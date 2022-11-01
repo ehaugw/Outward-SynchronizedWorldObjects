@@ -1,5 +1,5 @@
 modname = SynchronizedWorldObjects
-gamepath = /mnt/c/Program\ Files\ \(x86\)/Steam/steamapps/common/Outward
+gamepath = /mnt/c/Program\ Files\ \(x86\)/Steam/steamapps/common/Outward/Outward_Defed
 pluginpath = BepInEx/plugins
 
 assemble:
