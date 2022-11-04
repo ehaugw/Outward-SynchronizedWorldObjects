@@ -15,7 +15,7 @@ namespace SynchronizedWorldObjects
     public class SynchronizedWorldObjects : BaseUnityPlugin
     {
         public const string GUID = "com.ehaugw.synchronizedworldobjects";
-        public const string VERSION = "0.0.0";
+        public const string VERSION = "1.0.0";
         public const string NAME = "Synchronized World Objects";
 
 
