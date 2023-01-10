@@ -9,6 +9,41 @@ namespace SynchronizedWorldObjects
 {
     public class SynchronizedNPC : SynchronizedWorldObject
     {
+        public enum HairColors
+        {
+            BrownMedium = 0,
+            BrownBright = 1,
+            BrownDark = 2,
+            Black = 3,
+            Blonde = 4,
+            White = 5,
+            Red = 6,
+            Blue = 7,
+            Green = 8,
+            Orange = 9,
+            Purple = 10
+        }
+
+        public enum HairStyles
+        {
+            Bald = 0,
+            Basic = 1,
+            PonyTail = 2,
+            Wild = 3,
+            CombedBack = 4,
+            PonyTailBraids = 5,
+            BraidsBack = 6,
+            Bun = 7,
+            MaleShort = 8,
+            MaleMedium = 9,
+            MaleLong = 10,
+            CornrowsMedium = 11,
+            CornrowsLong = 12,
+            CornrowsShort = 13,
+            Ball = 14,
+
+        }
+
         public int[] DefaultEquipment = { };
         public int[] ModdedEquipment = { };
         public Vector3 Scale;
@@ -148,7 +183,7 @@ namespace SynchronizedWorldObjects
 
             if (VisualData != null)
             {
-                SL_Character.SetVisuals(instanceCharacter, VisualData.ToString());
+                TinyHelper.TinyHelper.Instance.StartCoroutine(SL_Character.SetVisuals(instanceCharacter, VisualData.ToString()));
             }
 
             instanceGameObject.transform.parent = obj.transform;
@@ -171,7 +206,10 @@ namespace SynchronizedWorldObjects
             {
                 instanceCharacter.Sheathed = ActiveScene.Sheathed;
             }
-            
+
+            //instanceCharacter.gameObject.SetActive(false);
+            //instanceCharacter.gameObject.SetActive(true);
+
             localCharacter = instanceCharacter;
 
             return instanceCharacter;
