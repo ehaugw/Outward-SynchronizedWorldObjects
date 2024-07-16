@@ -161,7 +161,7 @@ namespace SynchronizedWorldObjects
 
             if (instanceCharacter == null)
             {
-                if (recursionCount * millisecondDelay < 5000)
+                if (recursionCount * millisecondDelay < 20000)
                 {
                     TinyHelper.DelayedTask.GetTask(millisecondDelay).ContinueWith(_ => SetupClientSide(rpcListenerID, instanceUID, sceneViewID, recursionCount + 1, rpcMeta));
                     Console.Read();
@@ -252,9 +252,12 @@ namespace SynchronizedWorldObjects
             foreach (int itemID in ActiveScene.ModdedEquipment ?? ModdedEquipment)
             {
                 // setup custom weapon (using SideLoader, requires slightly different method to equip)            
-                var item = ItemManager.Instance.GenerateItemNetwork(itemID) as Equipment;
-                instanceCharacter.Inventory.TakeItem(item.UID);
-                SideLoader.At.Invoke<CharacterEquipment>(instanceCharacter.Inventory.Equipment, "EquipWithoutAssociating", new Type[] { typeof(Equipment), typeof(bool) }, new object[] { item, false });
+                if (ResourcesPrefabManager.Instance.ContainsItemPrefab(itemID.ToString()))
+                {
+                    var item = ItemManager.Instance.GenerateItemNetwork(itemID) as Equipment;
+                    instanceCharacter.Inventory.TakeItem(item.UID);
+                    SideLoader.At.Invoke<CharacterEquipment>(instanceCharacter.Inventory.Equipment, "EquipWithoutAssociating", new Type[] { typeof(Equipment), typeof(bool) }, new object[] { item, false });
+                }
             }
 
             if (instanceCharacter.CurrentWeapon?.TwoHanded ?? false)
