@@ -222,7 +222,8 @@ namespace SynchronizedWorldObjects
 
             if (localCharacter != null /*&& localCharacter.InCombat*/)
             {
-                if (ActiveScene.Pose == Character.SpellCastType.EnterInnBed && localCharacter.InLocomotion)
+                var validPoses = new Character.SpellCastType[] { Character.SpellCastType.EnterInnBed, Character.SpellCastType.Sit };
+                if (validPoses.Contains(ActiveScene.Pose) && localCharacter.InLocomotion)
                 {
                     localCharacter.Animator.SetInteger("SpellType", (int)ActiveScene.Pose);
                     localCharacter.Animator.SetTrigger("Spell");
